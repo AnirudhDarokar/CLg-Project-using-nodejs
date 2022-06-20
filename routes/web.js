@@ -1,29 +1,20 @@
 import express from 'express'
 const router = express.Router()
+import baseController from '../controllers/baseController.js'
 
-import contactController from '../controllers/contactController.js'
-import homeController from '../controllers/homeController.js'
-import mfashionController from '../controllers/mfashionController.js'
-import lfashionController from '../controllers/lfashionController.js'
-import kidsController from '../controllers/kidsController.js'
-import giftController from '../controllers/giftController.js'
-import choclateController from '../controllers/choclateController.js'
-import footwearController from '../controllers/footwearController.js'
-import eldController from '../controllers/eldController.js'
-import groceryController from '../controllers/groceryController.js'
-import loginController from '../controllers/loginController.js'
-
-
-router.get('/' , homeController)
-router.get('/contact' , contactController)
-router.get('/login',loginController)
-router.get('/mfashion',mfashionController)
-router.get('/lfashion',lfashionController)
-router.get('/kids', kidsController)
-router.get('/gift',giftController)
-router.get('/choclate' , choclateController)
-router.get('/footwear', footwearController)
-router.get('/eldevices', eldController)
-router.get('/grocery', groceryController)
+router.get('/' , baseController.home)
+router.get('/contact' , baseController.contact)
+router.get('/login',baseController.login)
+router.post('/login',baseController.verifyLogin)
+router.get('/registration',baseController.register)
+router.post('/registration',baseController.createUserDoc)
+router.get('/mfashion',baseController.mfashion)
+router.get('/lfashion',baseController.lfashion)
+router.get('/kids', baseController.kids)
+router.get('/gift',baseController.gift)
+router.get('/choclate' , baseController.choclate)
+router.get('/footwear', baseController.footwear)
+router.get('/eldevices', baseController.devices)
+router.get('/grocery', baseController.grocery)
 
 export default router
