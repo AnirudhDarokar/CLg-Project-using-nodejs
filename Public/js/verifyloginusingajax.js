@@ -24,7 +24,7 @@ function ajaxLoginPost(){
         dataType : 'json',
         success : function(result){
             console.log(result.email + " " + result.password);
-           if (result.email == formData.email && result.password == formData.password) {
+           if (result.email && result.password) {
             alert("login successful")
             window.location = "/"
            }else{

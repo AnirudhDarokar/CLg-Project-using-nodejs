@@ -3,13 +3,15 @@ import bcrypt from 'bcrypt'
 
 
    class userController{
+
     static save = async(req , res)=>{
         console.log("posted user" + JSON.stringify(req.body));
+        const hashPassword = await bcrypt.hash(req.body.password , 10);
         // create a customer
         const user = new userModel({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password,
+            password: hashPassword,
     
         })
     console.log("trying to save in db...........");
@@ -23,13 +25,20 @@ import bcrypt from 'bcrypt'
     }
 
     static verifyLogin = async(req , res)=>{
+
+        var verifyObj = {};
         console.log("posted data for login verification : " + JSON.stringify(req.body));
         const {email , password} = req.body
         // verifying customer
         const result = await userModel.findOne({email:email});
         console.log(result);
         if (result!=null) {
-           res.send(result);
+            const isPasswordMatch = await bcrypt.compare(password , result.password);
+            const isEmailMatch = email == result.email ? true : false;
+           verifyObj["email"] = isEmailMatch;
+           verifyObj["password"] = isPasswordMatch;
+           res.send(verifyObj);
+           console.log("reistered succesfully");
         }
         else{
             console.log("result is empty");
