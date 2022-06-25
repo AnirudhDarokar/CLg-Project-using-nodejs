@@ -1,4 +1,5 @@
 import userModel from "../models/user.js"
+import bcrypt from 'bcrypt'
 class baseController {
     static home = (req, res) => {
         res.render('index', { 'title': 'Home' })
@@ -8,45 +9,49 @@ class baseController {
         res.render('Login', { 'title': 'login' })
     }
 
-    static verifyLogin = async(req , res)=>{
-        try {
-            const {email , password} = req.body
-            const result = await userModel.findOne({email:email})
-            console.log(result)
-            if(result != null){
-                if (result.email == email && result.password == password) {
-                    res.send(`<h1>you logined----${result}`)
-                } else {
-                    res.send("<h1>Email or Password is not valid</h1>")
-                }
-            }else{
-                res.send("<h1>you are not registered user</h1>")
-            }
-        } catch (error) {
-            console.log(error);            
-        }
-    }
+    // static verifyLogin = async(req , res)=>{
+    //     try {
+    //         const {email , password} = req.body
+    //         const result = await userModel.findOne({email:email})
+    //         console.log(result)
+    //         if(result != null){
+    //             const isMatch = await bcrypt.compare(password , result.password)
+    //             if (result.email == email && isMatch) {
+    //                  res.redirect('/')
+    //             } else {
+    //                 res.send("<h1>Email or Password is not valid</h1>")
+    //             }
+    //         }else{
+    //             res.send("<h1>you are not registered user</h1>")
+    //         }
+    //     } catch (error) {
+    //         console.log(error);            
+    //     }
+    // }
 
     static register = (req, res) => {
         res.render('register', { 'title': 'register' })
     }
 
-    static createUserDoc = async(req , res)=>{
-        console.log(req.body);
-        try {
-            //Creating new document using  model
-            const doc = new userModel({
-                name:req.body.name,
-                email:req.body.email,
-                password:req.body.password
-            })
-            // saving document
-             await doc.save();
-             res.redirect('/login')
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // static createUserDoc = async(req , res)=>{
+    //     const hashPassword = await bcrypt.hash(req.body.password , 10)
+    //     console.log(req.body);
+    //     try {
+    //         //Creating new document using  model
+    //         const doc = new userModel({
+    //             name:req.body.name,
+    //             email:req.body.email,
+    //             password:hashPassword
+    //         })
+    //         // saving document
+    //          await doc.save();
+    //          res.redirect('/login')
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
+    
 
     static contact = (req, res) => {
         res.render('contact', { 'title': 'Contact' })
