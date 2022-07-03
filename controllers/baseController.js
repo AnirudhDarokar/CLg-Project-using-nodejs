@@ -1,4 +1,5 @@
 import userModel from "../models/user.js"
+import dataModel from "../models/datamodel.js"
 import bcrypt from 'bcrypt'
 class baseController {
     static home = (req, res) => {
@@ -9,50 +10,10 @@ class baseController {
         res.render('Login', { 'title': 'login' })
     }
 
-    // static verifyLogin = async(req , res)=>{
-    //     try {
-    //         const {email , password} = req.body
-    //         const result = await userModel.findOne({email:email})
-    //         console.log(result)
-    //         if(result != null){
-    //             const isMatch = await bcrypt.compare(password , result.password)
-    //             if (result.email == email && isMatch) {
-    //                  res.redirect('/')
-    //             } else {
-    //                 res.send("<h1>Email or Password is not valid</h1>")
-    //             }
-    //         }else{
-    //             res.send("<h1>you are not registered user</h1>")
-    //         }
-    //     } catch (error) {
-    //         console.log(error);            
-    //     }
-    // }
-
     static register = (req, res) => {
         res.render('register', { 'title': 'register' })
     }
-
-    // static createUserDoc = async(req , res)=>{
-    //     const hashPassword = await bcrypt.hash(req.body.password , 10)
-    //     console.log(req.body);
-    //     try {
-    //         //Creating new document using  model
-    //         const doc = new userModel({
-    //             name:req.body.name,
-    //             email:req.body.email,
-    //             password:hashPassword
-    //         })
-    //         // saving document
-    //          await doc.save();
-    //          res.redirect('/login')
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
     
-
     static contact = (req, res) => {
         res.render('contact', { 'title': 'Contact' })
     }
@@ -80,8 +41,17 @@ class baseController {
     static lfashion = (req, res) => {
         res.render('lfashion', { 'title': 'Lfashion' })
     }
-    static mfashion = (req, res) => {
-        res.render('mfashion', { 'title': 'Mfashion' })
+    static mfashion = async(req, res) => {
+        dataModel.find({},function(error , items){
+            res.render('mfashion', { 'title':'Mashion',
+                itemlist : items
+            })
+        })
+        
+    }
+
+    static data = (req , res)=>{
+        res.render('data' ,{'title':'Data'} )
     }
 
    

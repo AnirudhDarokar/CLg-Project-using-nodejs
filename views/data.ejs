@@ -1,0 +1,25 @@
+<%- include('./partials/header.ejs')%>
+<script type="module" src="/js/data.js"></script>
+</head>
+<body>
+    <%- include('./partials/navbar.ejs',{'pageName':'data'})%>
+    <div class="container"style="width:40%;">
+        <img class="img-fluid rounded mx-auto d-block logo my-5" src="/images/newlogo.jpg" alt="" />
+
+        <form method="post" id="data-form">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required />
+            </div>
+            <div class="mb-3">
+                <label for="url" class="form-label">Url</label>
+                <input type="text" class="form-control" id="url" name="url" required>
+            </div>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="text" class="form-control" id="amount" name="amount" required>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+ <%- include('./partials/footer.ejs')%>

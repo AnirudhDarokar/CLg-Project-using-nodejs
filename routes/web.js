@@ -22,5 +22,7 @@ router.get('/grocery', baseController.grocery)
 // router.use("/loggeduser" , checkUserAuth)
 // router.get("/loggeduser" , userController.loggedUserData)
 router.get("/getloggeduserdata" , userController.sendLogindetails)
+router.get("/data" , baseController.data)
+router.post("/postdata" , userController.addData)
 
 export default router

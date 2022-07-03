@@ -4,6 +4,7 @@ import userModel from "../models/user.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { storeToken } from '../Public/js/localStorageToken.js'
+import dataModel from '../models/datamodel.js'
 
 
    class userController{
@@ -78,10 +79,22 @@ import { storeToken } from '../Public/js/localStorageToken.js'
         }
     }
 
-    // static loggedUserData = (req , res)=>{
-    //     console.log(req.user);
-    //     res.send({"user" : req.user})
-    // }
+    static addData = async(req , res)=>{
+        console.log("posted data" + JSON.stringify(req.body));
+        //create data
+        const {title , url , amount} = req.body;
+        const data = new dataModel({
+            title:title,
+            url:url,
+            amount:amount
+        })
+        console.log("trying to save in db.........");
+        await data.save();
+        console.log("data saved successfully");
+        res.send({"message":"data created"})
+    }
+
+   
 
    }
     

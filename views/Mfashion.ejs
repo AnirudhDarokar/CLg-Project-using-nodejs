@@ -1,4 +1,24 @@
-<%- include('./partials/header.ejs') %></head>
+<%- include('./partials/header.ejs') %>
+<script src="/js/mfashion.js"></script>
+</head>
 <body>
-<h1>mfashion page</h1>
+<div class="container">
+<div class="row my-3">
+    <% itemlist.forEach(item=>{ %>
+
+    <div class="col-md-3 my-2">
+        <div class="card" style="width: 18rem;">
+            <img src="<%= item.url %>" class="card-img-top" alt="image not found " height="350px">
+            <div class="card-body">
+              <h5 class="card-title"><%= item.title %></h5>
+              <p class="card-text"><strong><%= item.amount %>/-</strong></p>
+              <a href="#" class="btn btn-success">Buy Now</a>
+            </div>
+          </div>        
+    </div>
+    <% }) %>
+</div>
+</div>
+
+
 <%- include('./partials/footer.ejs')%>
