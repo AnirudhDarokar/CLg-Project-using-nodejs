@@ -25,10 +25,11 @@ console.log("posting data........");
             url : "/save",
             data : JSON.stringify(formData),
             dataType : "json",
-            success : function(user){
-                if (user!=null && user!="") {
-                    alert("registered successfully")
-                    window.location="/login"
+            success : function(result){
+                // alert("data in result")
+                if (result!=null && result!="") {
+                    alert("registered successfully" )
+                    window.location="/"
                 }else{
                 alert("something went wrong try again");
                 }

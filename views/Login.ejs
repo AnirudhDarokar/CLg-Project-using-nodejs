@@ -1,5 +1,5 @@
 <%- include('./partials/header.ejs')%>
-<script src="/js/verifyloginusingajax.js"></script>
+<script type="module" src="/js/verifyloginusingajax.js"></script>
 </head>
 <body>
     <%- include('./partials/navbar.ejs',{'pageName':'Login'})%>
@@ -16,6 +16,7 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
+            <p style="color: red;float:right">New member please register</p>
         </form>
     </div>
  <%- include('./partials/footer.ejs')%>
