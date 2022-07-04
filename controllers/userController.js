@@ -82,11 +82,13 @@ import dataModel from '../models/datamodel.js'
     static addData = async(req , res)=>{
         console.log("posted data" + JSON.stringify(req.body));
         //create data
-        const {title , url , amount} = req.body;
+        const {title ,type , url , amount , details} = req.body;
         const data = new dataModel({
             title:title,
+            type:type,
             url:url,
-            amount:amount
+            amount:amount,
+            details : details
         })
         console.log("trying to save in db.........");
         await data.save();

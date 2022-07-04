@@ -10,8 +10,10 @@ function dataAjaxPost() {
 
     const formdata = {
         title: $("#title").val(),
+        type: $("#type").val(),
         url: $("#url").val(),
-        amount: $("#amount").val()
+        amount: $("#amount").val(),
+        details : $("#details").val()
     }
 
     console.log("posting data");
@@ -40,7 +42,9 @@ function dataAjaxPost() {
 
 function resetData() {
          $("#title").val("");
+         $("#type").val("");
         $("#url").val("");
         $("#amount").val("");
+        $("#details").val("");
 
 }

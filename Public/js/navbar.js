@@ -42,4 +42,6 @@ $(document).on('click', '#user-data-button', function () {
 
 })
 
-$(document).on('click', "#logut-btn", function(){window.location="/"})
+$(document).on('click', "#logut-btn", function(){window.location="/"
+    $(".userInfo").hide();
+})
