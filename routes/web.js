@@ -18,11 +18,13 @@ router.get('/choclate' , baseController.choclate)
 router.get('/footwear', baseController.footwear)
 router.get('/eldevices', baseController.devices)
 router.get('/grocery', baseController.grocery)
+router.get('/admin', baseController.admin);
 // applying middleware for getting user data
 // router.use("/loggeduser" , checkUserAuth)
 // router.get("/loggeduser" , userController.loggedUserData)
 router.get("/getloggeduserdata" , userController.sendLogindetails)
 router.get("/data" , baseController.data)
 router.post("/postdata" , userController.addData)
+router.post("/admin", userController.addDataThroughAdmin);
 
 export default router

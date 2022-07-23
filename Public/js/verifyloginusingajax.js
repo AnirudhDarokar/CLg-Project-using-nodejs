@@ -1,6 +1,4 @@
-// import {getToken} from '../js/localStorageToken.js'
- 
-//  $('document').ready(function(){
+
 
         $("#login-form").submit(function(e){
             e.preventDefault();
@@ -27,9 +25,16 @@ function ajaxLoginPost(){
         success : function(result){
             console.log(result.email + " " + result.password);
            if (result.email && result.password && result.token) {
+            localStorage.setItem("token" , result.token); 
             alert("login successful    " + result.token)
             // setloggedUserData(result.token);
-            window.location = "/home"
+            // let admin = result.Email.split("$");
+            if (result.Email.includes("$admin")) {
+                window.location = "/data";
+            }else{
+                window.location = "/home"
+            }
+           
            }else{
             alert("email or password dosn't match")
            }
@@ -43,22 +48,7 @@ function ajaxLoginPost(){
     resetData();
 }
 
-// function setloggedUserData(token){
-//     // const token = getToken();
-//     alert("calling setloggeduserdata")
-//     $.ajax({
-//         type : "GET",
-//         header : {"authorization":`Bearer ${token}`} ,
-//         url : "/loggeduser",
-//         success : function(result){
-//             alert("got the result")
-//             if(result != null && result!=""){
-//             alert("user data : " + result.user)
-//             console.log("user data : " + result.user);
-//         }else{alert("empty")}
-//         }
-//     })
-// }
+
 
 function resetData(){
     $("#email").val("");

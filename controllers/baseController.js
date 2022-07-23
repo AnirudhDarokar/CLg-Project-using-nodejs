@@ -2,6 +2,11 @@ import userModel from "../models/user.js"
 import dataModel from "../models/datamodel.js"
 import bcrypt from 'bcrypt'
 class baseController {
+
+static admin = (req , res)=>{
+    res.render('admin');
+}
+
     static home = (req, res) => {
         res.render('index', { 'title': 'Home' })
     }

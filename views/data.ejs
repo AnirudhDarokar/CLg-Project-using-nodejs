@@ -2,32 +2,62 @@
 <script type="module" src="/js/data.js"></script>
 </head>
 <body>
-    <%- include('./partials/navbar.ejs',{'pageName':'data'})%>
-    <div class="container"style="width:40%;">
-        <img class="img-fluid rounded mx-auto d-block logo my-5" src="/images/newlogo.jpg" alt="" />
+    <!-- <%- include('./partials/navbar.ejs',{'pageName':'data'})%> -->
+    <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
+        <a class="navbar-brand" href="#">MyShop</a>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading1">Add Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading2">User Details</a>
+          </li>
+        </ul>
+      </nav>
+      <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" style="overflow-y: scroll;">
+        <h4 id="scrollspyHeading1">Add Products</h4>
+        <!-- <p></p> -->
+        <div class="container border border-success border-5" >
+          <img class="img-fluid rounded mx-auto d-block logo my-5" src="/images/newlogo.jpg" alt="" />
 
-        <form method="post" id="data-form">
-            <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" name="title" required />
-            </div>
-            <div class="mb-3">
-                <label for="type" class="form-label">Type</label>
-                <input type="text" class="form-control" id="type" name="type" required>
-            </div>
-            <div class="mb-3">
-                <label for="url" class="form-label">Url</label>
-                <input type="text" class="form-control" id="url" name="url" required>
-            </div>
-            <div class="mb-3">
-                <label for="amount" class="form-label">Amount</label>
-                <input type="text" class="form-control" id="amount" name="amount" required>
-            </div>
-            <div class="mb-3">
-                <label for="details" class="form-label">Details</label>
-                <input type="text" class="form-control" id="details" name="details" required>
-            </div>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-    </div>
+          <form method="post" id="data-form">
+              <div class="mb-3">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="text" class="form-control" id="title" name="title" required />
+              </div>
+              <div class="mb-3">
+                  <label for="type" class="form-label">Type</label>
+                  <input type="text" class="form-control" id="type" name="type" required>
+              </div>
+              <div class="mb-3">
+                  <label for="url" class="form-label">Url</label>
+                  <input type="text" class="form-control" id="u   rl" name="url" required>
+              </div>
+              <div class="mb-3">
+                  <label for="amount" class="form-label">Amount</label>
+                  <input type="text" class="form-control" id="amount" name="amount" required>
+              </div>
+              <div class="mb-3">
+                  <label for="details" class="form-label">Details</label>
+                  <input type="text" class="form-control" id="details" name="details" required>
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+          </form>    
+        </div>
+        <h4 id="scrollspyHeading2">User Details</h4>
+        <!-- <p>...</p> -->
+        <div class="container border border-success border-5" style="height: 400px;"></div>
+        <h4 id="scrollspyHeading3">Third heading</h4>
+        <!-- <p>...</p> -->
+        <div class="container border border-success border-5" style="height: 400px;"></div>
+        <h4 id="scrollspyHeading4">Fourth heading</h4>
+        <!-- <p>...</p> -->
+        <div class="container border border-success border-5" style="height: 400px;"></div>
+        <h4 id="scrollspyHeading5">Fifth heading</h4>
+        <!-- <p>...</p> -->
+        <div class="container border border-success border-5" style="height: 400px;"></div>
+      </div>
+    <!-- <div class="container"style="width:40%;">
+        
+    </div> -->
  <%- include('./partials/footer.ejs')%>

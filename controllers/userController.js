@@ -11,15 +11,25 @@ import dataModel from '../models/datamodel.js'
 
     static loggedUserData = [];
 
-    static getLoggedUserData = (result)=>{
+    static getLoggedUserData = (result , email)=>{
         this.loggedUserData.push(result);
-        // console.log(this.loggedUserData);
-        return this.loggedUserData
+        // this.loggedUserData.filter((item)=>{return item.email == email})
+        return this.loggedUserData 
 
     }
 
-     static sendLogindetails = (req , res)=>{
-        res.send(this.loggedUserData[0]);
+     static sendLogindetails = async (req , res)=>{
+        res.send(this.loggedUserData[this.loggedUserData.length-1]);
+    //     const {token} = req.body;
+        
+    //     var data = JSON.parse(Buffer.from(token.split('.')[1],'base64').toString);
+    //     // function parseJwt (token) {
+    //     //     return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+    //     // }
+    // //     const { userID } =   jwt.verify(token , process.env.SECRET);
+    // //    var userDetail = await userModel.findById(userID);
+    // console.log(data);
+    //    res.send({"detail" : data});
      }
     static save = async(req , res)=>{
         
@@ -60,8 +70,7 @@ import dataModel from '../models/datamodel.js'
         const {email , password} = req.body
         // verifying customer
         const result = await userModel.findOne({email:email});
-        console.log("loggeddddddddddddddddddddddddddddddddddddd");
-       this.getLoggedUserData(result);
+       this.getLoggedUserData(result , result.email);
         console.log(result);
         if (result!=null) {
             const isPasswordMatch = await bcrypt.compare(password , result.password);
@@ -71,6 +80,7 @@ import dataModel from '../models/datamodel.js'
            verifyObj["email"] = isEmailMatch;
            verifyObj["password"] = isPasswordMatch;
            verifyObj["token"] = token;
+           verifyObj["Email"] = result.email;
            res.send(verifyObj);
            console.log("login succesfully");
         }
@@ -94,6 +104,20 @@ import dataModel from '../models/datamodel.js'
         await data.save();
         console.log("data saved successfully");
         res.send({"message":"data created"})
+    }
+
+    static addDataThroughAdmin = async(req , res)=>{
+        console.log("started");
+        const {title , type , url , amount , details}=req.body;
+        const datamodel = new dataModel({
+            title:title,
+            type:type,
+            url:url,
+            amount:amount,
+            details : details
+        })
+        await datamodel.save();
+        res.send({"message":"data posted throeugh admin"})
     }
 
    
